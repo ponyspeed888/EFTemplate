@@ -1,0 +1,289 @@
+<#@ template hostSpecific="true" debug="true" #>
+<#@ assembly name="Microsoft.EntityFrameworkCore" #>
+<#@ assembly name="Microsoft.EntityFrameworkCore.Design" #>
+<#@ assembly name="Microsoft.EntityFrameworkCore.Relational" #>
+<#@ assembly name="Microsoft.Extensions.DependencyInjection.Abstractions" #>
+<#@ parameter name="EntityType" type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" #>
+<#@ parameter name="Options" type="Microsoft.EntityFrameworkCore.Scaffolding.ModelCodeGenerationOptions" #>
+<#@ parameter name="NamespaceHint" type="System.String" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.ComponentModel.DataAnnotations" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="Microsoft.EntityFrameworkCore" #>
+<#@ import namespace="Microsoft.EntityFrameworkCore.Design" #>
+<#@ import namespace="Microsoft.Extensions.DependencyInjection" #>
+#nullable enable
+
+<#
+    // This is the only code block you need to modify to configure the t4
+
+
+    //  To debug the t4, uncomment the following line and set debug="true" at top of page
+    
+    //System.Diagnostics.Debugger.Launch();
+
+
+    string BaseClassSpec = "" ;
+    string ListType = "List" ;
+    string FieldAttribute = "" ;
+    bool bMvvm = true ;
+
+    if (bMvvm)
+    {
+        BaseClassSpec = " : ObservableValidator" ;
+        ListType = "ObservableCollection" ;
+        FieldAttribute = "[ObservableProperty] " ;
+    }
+
+
+#>
+<# 
+
+        string FieldDef(object ctype, string name,  bool needsNullable, bool needsInitializer, bool mvvm )
+        {
+            //return "sisi" ;
+            //return $"public {code.Reference(property.ClrType)} {needsNullable ? "?" : ""}   {property.Name} { get; set; } {needsInitializer ? " = null!;" : ""}
+            //return $"public {code.Reference(property.ClrType)}  {(needsNullable ? "?" : "")}   {property.Name}  {{ get; set; }} {(needsInitializer ? " = null!; " : "" )}";
+            //return $"public {ctype.ToString()}  {(needsNullable ? "?" : "")}   {property.Name}  {{ get; set; }} {(needsInitializer ? " = null!; " : "" )}";
+              
+            if (mvvm)
+                return $"{FieldAttribute}\n   private {ctype.ToString()}{(needsNullable ? "?" : "")} _{name} {(needsInitializer ? " = null! " : "" ) };";
+            else
+                return $"{FieldAttribute}\n   public {ctype.ToString() }{(needsNullable ? "?" : "")} {name} {{ get; set; }} {(needsInitializer ? " = null!; " : "" )}";
+
+                
+        }
+
+        string ToMvvmAttr ( string strAttr ) 
+        {
+            if ( bMvvm )
+                return strAttr.Replace ("[", "[property:") ;
+            else
+                return strAttr ;
+        }
+
+
+#>
+<#
+    if (EntityType.IsSimpleManyToManyJoinEntityType())
+    {
+        // Don't scaffold these
+        return "";
+    }
+
+    var services = (IServiceProvider)Host;
+    var annotationCodeGenerator = services.GetRequiredService<IAnnotationCodeGenerator>();
+    var code = services.GetRequiredService<ICSharpHelper>();
+
+    var usings = new List<string>
+    {
+        "System.Collections.ObjectModel",
+        "System",
+        "System.Collections.Generic"
+    };
+
+    if (Options.UseDataAnnotations)
+    {
+        usings.Add("System.ComponentModel.DataAnnotations");
+        usings.Add("System.ComponentModel.DataAnnotations.Schema");
+        usings.Add("Microsoft.EntityFrameworkCore");
+
+    }
+
+    if (bMvvm) 
+    {
+        usings.Add("CommunityToolkit.Mvvm.ComponentModel");
+    }
+
+
+    if (!string.IsNullOrEmpty(NamespaceHint))
+    {
+#>
+namespace <#= NamespaceHint #>;
+
+<#
+    }
+
+    if (!string.IsNullOrEmpty(EntityType.GetComment()))
+    {
+#>
+/// <summary>
+/// <#= code.XmlComment(EntityType.GetComment()) #>
+/// </summary>
+<#
+    }
+
+    if (Options.UseDataAnnotations)
+    {
+        foreach (var dataAnnotation in EntityType.GetDataAnnotations(annotationCodeGenerator))
+        {
+#>
+<#= code.Fragment(dataAnnotation) #>
+<#
+        }
+    }
+#>
+
+ 
+public partial class <#= EntityType.Name #>
+#if MVVM
+                : ObservableValidator
+#else
+#endif
+{
+<#
+    var firstProperty = true;
+    foreach (var property in EntityType.GetProperties().OrderBy(p => p.GetColumnOrder() ?? -1))
+    {
+        if (!firstProperty)
+        {
+            WriteLine("");
+        }
+
+        if (!string.IsNullOrEmpty(property.GetComment()))
+        {
+#>
+    /// <summary>
+    /// <#= code.XmlComment(property.GetComment(), indent: 1) #>
+    /// </summary>
+<#
+        }
+
+        if (Options.UseDataAnnotations)
+        {
+            var dataAnnotations = property.GetDataAnnotations(annotationCodeGenerator)
+                .Where(a => !(a.Type == typeof(RequiredAttribute) && Options.UseNullableReferenceTypes && !property.ClrType.IsValueType));
+            
+           bool bIsIdentity = false ;
+
+            //if ( property.GetRelationalTypeMapping().StoreType.ToLower() == "display" ) 
+              //  bIsIdentity = true ;
+
+ 
+
+            foreach (var dataAnnotation in dataAnnotations)
+            {
+            /*
+               //if ( ( dataAnnotation.Type == typeof (KeyAttribute) ) && property.ClrType.FullName == "System.Int32" ) 
+                 //  bIsIdentity = true ;
+                   // jy to fix, use identity column even if using fluent api
+
+               if ( dataAnnotation.Type == typeof (KeyAttribute)  && property.GetRelationalTypeMapping().StoreType.ToLower() == "integer" ) 
+                   bIsIdentity = true ;
+               else 
+                   bIsIdentity = false ;
+
+
+               if ( property.Name.ToLower().Contains ("itemid") )
+               {
+                   var yy = property.Name ;
+               }
+
+               //jy, No need for DatabaseGeneratedOption for it is PK with integer type 
+               bIsIdentity = false ;
+            */
+
+#>
+<# if ( bIsIdentity ) { #>  
+   [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+<# } #>
+#if MVVM
+   <#= ToMvvmAttr (code.Fragment(dataAnnotation) )  #>
+#else
+   <#= code.Fragment(dataAnnotation) #>
+#endif
+
+<#
+            }
+        }
+
+        usings.AddRange(code.GetRequiredUsings(property.ClrType));
+
+        var needsNullable = Options.UseNullableReferenceTypes && property.IsNullable && !property.ClrType.IsValueType;
+        var needsInitializer = Options.UseNullableReferenceTypes && !property.IsNullable && !property.ClrType.IsValueType;
+
+#>
+#if (MVVM)
+    [ObservableProperty]
+    private <#= code.Reference(property.ClrType) #><#= needsNullable ? "?" : "" #> _<#= property.Name #> <#= needsInitializer ? " = null!;" : ";" #> 
+#else
+    public <#= code.Reference(property.ClrType) #><#= needsNullable ? "?" : "" #> <#= property.Name #> { get; set; }<#= needsInitializer ? " = null!;" : "" #>
+#endif
+<#
+        firstProperty = false;
+    }
+
+    foreach (var navigation in EntityType.GetNavigations())
+    {
+        WriteLine("");
+
+        if (Options.UseDataAnnotations)
+        {
+            foreach (var dataAnnotation in navigation.GetDataAnnotations(annotationCodeGenerator))
+            {
+#>
+    <#= code.Fragment(dataAnnotation) #>
+<#
+            }
+        }
+
+        var targetType = navigation.TargetEntityType.Name;
+        if (navigation.IsCollection)
+        {
+#>
+#if MVVM
+    public virtual ICollection<<#= targetType #>> <#= navigation.Name #> { get; set; } = new ObservableCollection<<#= targetType #>>();
+#else
+    public virtual ICollection<<#= targetType #>> <#= navigation.Name #> { get; set; } = new List<<#= targetType #>>();
+#endif
+
+<#
+        }
+        else
+        {
+            var needsNullable = Options.UseNullableReferenceTypes && !(navigation.ForeignKey.IsRequired && navigation.IsOnDependent);
+            var needsInitializer = Options.UseNullableReferenceTypes && navigation.ForeignKey.IsRequired && navigation.IsOnDependent;
+#>
+    public virtual <#= targetType #><#= needsNullable ? "?" : "" #> <#= navigation.Name #> { get; set; }<#= needsInitializer ? " = null!;" : "" #>
+<#
+        }
+    }
+
+    foreach (var skipNavigation in EntityType.GetSkipNavigations())
+    {
+        WriteLine("");
+
+        if (Options.UseDataAnnotations)
+        {
+            foreach (var dataAnnotation in skipNavigation.GetDataAnnotations(annotationCodeGenerator))
+            {
+#>
+    <#= code.Fragment(dataAnnotation) #>
+<#
+            }
+        }
+#>
+    public virtual ICollection<<#= skipNavigation.TargetEntityType.Name #>> <#= skipNavigation.Name #> { get; set; } = new List<<#= skipNavigation.TargetEntityType.Name #>>();
+<#
+    }
+#>
+}
+<#
+    var previousOutput = GenerationEnvironment;
+    GenerationEnvironment = new StringBuilder();
+
+    foreach (var ns in usings.Distinct().OrderBy(x => x, new NamespaceComparer()))
+    {
+#>
+using <#= ns #>;
+<#
+    }
+
+    WriteLine("");
+
+    GenerationEnvironment.Append(previousOutput);
+#>
+
+
+

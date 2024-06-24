@@ -1,0 +1,8 @@
+﻿dotnet new install . --force
+
+dotnet new list ponyspeed888-eftemplates
+
+dotnet new uninstall .
+
+
+dotnet new ponyspeed888-eftemplates

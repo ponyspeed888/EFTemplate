@@ -1,0 +1,19 @@
+﻿dotnet new install . --force
+
+dotnet new list ponyspeed888-eftemplates
+
+dotnet new uninstall .
+
+
+dotnet new ponyspeed888-eftemplates --TemplateType mvvm --force
+
+dotnet new ponyspeed888-mvc-templates -o abc --httpPort 3000 --force
+
+
+dotnet new list ponyspeed888-mvc-templates
+
+dotnet new uninstall ponyspeed888-mvc-templates
+
+ dotnet new uninstall T:\PonyProjectTemplateSourceNew
+
+  dotnet new uninstall U:\DbContextScaffold8

@@ -1,0 +1,102 @@
+<#@ template hostSpecific="true" debug="true" #>
+<#@ assembly name="Microsoft.EntityFrameworkCore" #>
+<#@ assembly name="Microsoft.EntityFrameworkCore.Design" #>
+<#@ assembly name="Microsoft.EntityFrameworkCore.Relational" #>
+<#@ assembly name="Microsoft.Extensions.DependencyInjection.Abstractions" #>
+<#@ parameter name="EntityType" type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" #>
+<#@ parameter name="Options" type="Microsoft.EntityFrameworkCore.Scaffolding.ModelCodeGenerationOptions" #>
+<#@ parameter name="NamespaceHint" type="System.String" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.ComponentModel.DataAnnotations" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="Microsoft.EntityFrameworkCore" #>
+<#@ import namespace="Microsoft.EntityFrameworkCore.Design" #>
+<#@ import namespace="Microsoft.Extensions.DependencyInjection" #>
+<#
+
+    string StaticExtPropName = "ExtProp" ;
+    string DynamicExtPropName = "ExtPropDynamic" ;
+
+    var pp = EntityType.FindProperty(StaticExtPropName);
+    var pp1 = EntityType.FindProperty(DynamicExtPropName);
+    if ( pp == null && pp1 == null )
+        return "" ;
+
+#>
+#if NET8_0_OR_GREATER
+
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using <#= NamespaceHint #>;
+
+#if MVVM
+using CommunityToolkit.Mvvm.ComponentModel;
+#endif
+
+
+
+namespace <#= NamespaceHint #>;
+<#
+    //System.Diagnostics.Debugger.Launch();
+#>
+
+public partial class <#= EntityType.Name #>Configuration : IEntityTypeConfiguration<<#= EntityType.Name #>>
+{
+    partial void MoreBuilderCalls (EntityTypeBuilder<<#= EntityType.Name #>> builder);
+
+    public void Configure(EntityTypeBuilder<<#= EntityType.Name #>> builder)
+    {
+
+        builder.OwnsOne(x => x.ExtProp, cb =>
+        {
+            
+            cb.ToJson();
+            
+        });
+
+        MoreBuilderCalls (builder) ;
+
+
+    }
+}
+
+
+
+public partial class <#= EntityType.Name #>
+{
+
+#if MVVM
+    [ObservableProperty]
+    private ObservableDictionary<string, object>? _ExtPropDynamic = new ObservableDictionary<string, object>();
+#else
+    public ObservableDictionary<string, object>? ExtPropDynamic { get; set; } = new ObservableDictionary<string, object>();
+#endif
+
+
+
+#if MVVM
+    [ObservableProperty]
+    private <#= EntityType.Name #>ExtProp? _ExtProp;
+#else
+    public <#= EntityType.Name #>ExtProp? ExtProp { get; set; }
+#endif
+
+ 
+    public string? ExtPropAsString { get { if (ExtProp != null) return System.Text.Json.JsonSerializer.Serialize (ExtProp)  ;  else return null; }  }
+
+
+}
+
+
+
+public partial class <#= EntityType.Name #>ExtProp
+{
+    // Add your class definition in another file so that it won't be overwritten when regenerated 
+    /*KeepChanges09*/
+
+    /*KeepChanges09*/
+
+}
+
+#endif

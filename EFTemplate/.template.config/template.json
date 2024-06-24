@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "ponyspeed888",
+  "classifications": [ "General"],
+  "identity": "ponyspeed888.EFCoreTemplates",
+  "groupIdentity": "Microsoft.EntityFrameworkCore.Templates.ef-templates",
+  "name": "ponyspeed888 Entity Framework Core Scaffolding Templates",
+  "shortName": "ponyspeed888-eftemplates",
+  "defaultName": "NewPage1",
+
+  "tags": {
+    "language": "C#",
+    "type": "item"
+  },
+
+  "sourceName": "EFTemplate",
+  "preferNameDirectory": true,
+
+  "symbols": {
+    "BaseClass": {
+      "replaces": "_EntityBaseClassSpec_",
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": ""
+    },
+
+
+
+    "TemplateType": {
+      "type": "parameter",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "Org",
+          "description": "Org temp"
+        },
+        {
+          "choice": "mvvm",
+          "description": "Using MVVM Toolkit"
+        },
+        {
+          "choice": "Full",
+          "description": "With injected services"
+        }
+
+      ],
+      "defaultValue": "mvvm",
+      "description": "The type of templlate to use"
+    },
+
+
+    "createdate": {
+      "type": "generated",
+      "generator": "now",
+      "parameters": {
+        "format": "MM/dd/yyyy"
+      },
+      "replaces": "01/01/1999"
+    }
+  },
+  "sources": [
+    {
+      "include": "CodeTemplates/**/*",
+
+
+      "modifiers": [
+
+        {
+          "condition": "(TemplateType == \"mvvm\")",
+          "rename": {
+            "CodeTemplates/EFCore/EntityType mvvm.t4": "CodeTemplates/EFCore/EntityType.t4"
+          },
+          "exclude": [
+            "CodeTemplates/EFCore/EntityTypeConfiguration.t4"
+          ]
+        },
+
+        {
+          "condition": "(TemplateType == \"Org\")",
+          "rename": {
+            "CodeTemplates/EFCore/EntityType Org.t4": "CodeTemplates/EFCore/EntityType.t4"
+          },
+          "exclude": [
+            "CodeTemplates/EFCore/EntityTypeConfiguration.t4"
+          ]
+        }
+
+      ]
+    }
+  ]
+}
+

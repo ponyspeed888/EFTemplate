@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove=".template.config\**" />
+    <EmbeddedResource Remove=".template.config\**" />
+    <None Remove=".template.config\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include=".template.config\ide.host.json" />
+    <Content Include=".template.config\MauiPageCSFile.ico" />
+  </ItemGroup>
+
+</Project>
