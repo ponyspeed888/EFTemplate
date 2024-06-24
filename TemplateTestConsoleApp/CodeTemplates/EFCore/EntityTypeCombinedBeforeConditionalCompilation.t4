@@ -23,17 +23,11 @@
     
     //System.Diagnostics.Debugger.Launch();
 
- 
-    string StaticExtPropName = "ExtProp" ;
-    string DynamicExtPropName = "ExtPropDynamic" ;
-    string [] UseConfigure = new string [] { "Order", "OrderDetail"} ;
 
     string BaseClassSpec = "" ;
     string ListType = "List" ;
     string FieldAttribute = "" ;
     bool bMvvm = true ;
-
-
 
     if (bMvvm)
     {
@@ -52,7 +46,6 @@
             //return $"public {code.Reference(property.ClrType)} {needsNullable ? "?" : ""}   {property.Name} { get; set; } {needsInitializer ? " = null!;" : ""}
             //return $"public {code.Reference(property.ClrType)}  {(needsNullable ? "?" : "")}   {property.Name}  {{ get; set; }} {(needsInitializer ? " = null!; " : "" )}";
             //return $"public {ctype.ToString()}  {(needsNullable ? "?" : "")}   {property.Name}  {{ get; set; }} {(needsInitializer ? " = null!; " : "" )}";
-              
             if (mvvm)
                 return $"{FieldAttribute}\n   private {ctype.ToString()}{(needsNullable ? "?" : "")} _{name} {(needsInitializer ? " = null! " : "" ) };";
             else
@@ -84,7 +77,6 @@
 
     var usings = new List<string>
     {
-        "Microsoft.EntityFrameworkCore",
         "System.Collections.ObjectModel",
         "System",
         "System.Collections.Generic"
@@ -94,6 +86,7 @@
     {
         usings.Add("System.ComponentModel.DataAnnotations");
         usings.Add("System.ComponentModel.DataAnnotations.Schema");
+        usings.Add("Microsoft.EntityFrameworkCore");
 
     }
 
@@ -124,53 +117,20 @@ namespace <#= NamespaceHint #>;
     {
         foreach (var dataAnnotation in EntityType.GetDataAnnotations(annotationCodeGenerator))
         {
-            var bEF8Only = false ;
-            var bEF8Start = "#if NET8_0_OR_GREATER\n" ;
-            var bEF8End = "\n#endif" ;
-
-
-            if (dataAnnotation.Type.Name == "PrimaryKeyAttribute") 
-            //if ( dataAnnotation.Type == typeof(PrimaryKeyAttribute) )
-                bEF8Only = true ;
-                //continue ;
 #>
-<#=bEF8Only? bEF8Start : ""#><#= code.Fragment(dataAnnotation) #><#=bEF8Only? bEF8End : ""#>
+<#= code.Fragment(dataAnnotation) #>
 <#
         }
     }
 #>
 
-<#
-    var pp = EntityType.FindProperty(StaticExtPropName);
-    var pp1 = EntityType.FindProperty(DynamicExtPropName);
-    var bWantConfige = UseConfigure.Contains (EntityType.Name) ;
-    //if (  bWantConfige)
-    if ( pp != null || pp1 != null || bWantConfige) 
-    {
-#>
-#if NET8_0_OR_GREATER
-[EntityTypeConfiguration(typeof(<#= EntityType.Name #>Configuration))]
-#endif
-<#}#>
-
-public partial class <#= EntityType.Name #>
-#if MVVM
-                : ObservableValidator
-#else
-#endif
+ 
+public partial class <#= EntityType.Name #> <#=BaseClassSpec#>
 {
 <#
     var firstProperty = true;
     foreach (var property in EntityType.GetProperties().OrderBy(p => p.GetColumnOrder() ?? -1))
     {
-
-        if ( property.Name == StaticExtPropName) 
-            continue ;
-            
-
-        if ( property.Name == DynamicExtPropName) 
-            continue ;
-
         if (!firstProperty)
         {
             WriteLine("");
@@ -223,12 +183,7 @@ public partial class <#= EntityType.Name #>
 <# if ( bIsIdentity ) { #>  
    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 <# } #>
-#if MVVM
    <#= ToMvvmAttr (code.Fragment(dataAnnotation) )  #>
-#else
-   <#= code.Fragment(dataAnnotation) #>
-#endif
-
 <#
             }
         }
@@ -239,12 +194,7 @@ public partial class <#= EntityType.Name #>
         var needsInitializer = Options.UseNullableReferenceTypes && !property.IsNullable && !property.ClrType.IsValueType;
 
 #>
-#if MVVM
-    [ObservableProperty]
-    private <#= code.Reference(property.ClrType) #><#= needsNullable ? "?" : "" #> _<#= property.Name #> <#= needsInitializer ? " = null!;" : ";" #> 
-#else
-    public <#= code.Reference(property.ClrType) #><#= needsNullable ? "?" : "" #> <#= property.Name #> { get; set; }<#= needsInitializer ? " = null!;" : "" #>
-#endif
+   <#=FieldDef (code.Reference(property.ClrType), property.Name, needsNullable, needsInitializer, bMvvm ) #>
 <#
         firstProperty = false;
     }
@@ -267,12 +217,7 @@ public partial class <#= EntityType.Name #>
         if (navigation.IsCollection)
         {
 #>
-#if MVVM
-    public virtual ICollection<<#= targetType #>> <#= navigation.Name #> { get; set; } = new ObservableCollection<<#= targetType #>>();
-#else
-    public virtual ICollection<<#= targetType #>> <#= navigation.Name #> { get; set; } = new List<<#= targetType #>>();
-#endif
-
+    public virtual ICollection<<#= targetType #>> <#= navigation.Name #> { get; set; } = new <#=ListType#><<#= targetType #>>();
 <#
         }
         else

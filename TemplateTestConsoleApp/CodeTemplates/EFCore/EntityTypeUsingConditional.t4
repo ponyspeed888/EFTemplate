@@ -23,17 +23,11 @@
     
     //System.Diagnostics.Debugger.Launch();
 
- 
-    string StaticExtPropName = "ExtProp" ;
-    string DynamicExtPropName = "ExtPropDynamic" ;
-    string [] UseConfigure = new string [] { "Order", "OrderDetail"} ;
 
     string BaseClassSpec = "" ;
     string ListType = "List" ;
     string FieldAttribute = "" ;
     bool bMvvm = true ;
-
-
 
     if (bMvvm)
     {
@@ -84,7 +78,6 @@
 
     var usings = new List<string>
     {
-        "Microsoft.EntityFrameworkCore",
         "System.Collections.ObjectModel",
         "System",
         "System.Collections.Generic"
@@ -94,6 +87,7 @@
     {
         usings.Add("System.ComponentModel.DataAnnotations");
         usings.Add("System.ComponentModel.DataAnnotations.Schema");
+        usings.Add("Microsoft.EntityFrameworkCore");
 
     }
 
@@ -124,35 +118,14 @@ namespace <#= NamespaceHint #>;
     {
         foreach (var dataAnnotation in EntityType.GetDataAnnotations(annotationCodeGenerator))
         {
-            var bEF8Only = false ;
-            var bEF8Start = "#if NET8_0_OR_GREATER\n" ;
-            var bEF8End = "\n#endif" ;
-
-
-            if (dataAnnotation.Type.Name == "PrimaryKeyAttribute") 
-            //if ( dataAnnotation.Type == typeof(PrimaryKeyAttribute) )
-                bEF8Only = true ;
-                //continue ;
 #>
-<#=bEF8Only? bEF8Start : ""#><#= code.Fragment(dataAnnotation) #><#=bEF8Only? bEF8End : ""#>
+<#= code.Fragment(dataAnnotation) #>
 <#
         }
     }
 #>
 
-<#
-    var pp = EntityType.FindProperty(StaticExtPropName);
-    var pp1 = EntityType.FindProperty(DynamicExtPropName);
-    var bWantConfige = UseConfigure.Contains (EntityType.Name) ;
-    //if (  bWantConfige)
-    if ( pp != null || pp1 != null || bWantConfige) 
-    {
-#>
-#if NET8_0_OR_GREATER
-[EntityTypeConfiguration(typeof(<#= EntityType.Name #>Configuration))]
-#endif
-<#}#>
-
+ 
 public partial class <#= EntityType.Name #>
 #if MVVM
                 : ObservableValidator
@@ -163,14 +136,6 @@ public partial class <#= EntityType.Name #>
     var firstProperty = true;
     foreach (var property in EntityType.GetProperties().OrderBy(p => p.GetColumnOrder() ?? -1))
     {
-
-        if ( property.Name == StaticExtPropName) 
-            continue ;
-            
-
-        if ( property.Name == DynamicExtPropName) 
-            continue ;
-
         if (!firstProperty)
         {
             WriteLine("");
@@ -239,7 +204,7 @@ public partial class <#= EntityType.Name #>
         var needsInitializer = Options.UseNullableReferenceTypes && !property.IsNullable && !property.ClrType.IsValueType;
 
 #>
-#if MVVM
+#if (MVVM)
     [ObservableProperty]
     private <#= code.Reference(property.ClrType) #><#= needsNullable ? "?" : "" #> _<#= property.Name #> <#= needsInitializer ? " = null!;" : ";" #> 
 #else
