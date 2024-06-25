@@ -11,8 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include=".template.config\ide.host.json" />
-    <Content Include=".template.config\MauiPageCSFile.ico" />
+    <Folder Include=".template.config\" />
   </ItemGroup>
 
 </Project>

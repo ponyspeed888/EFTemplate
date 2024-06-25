@@ -17,15 +17,27 @@
   "preferNameDirectory": true,
 
   "symbols": {
-    "BaseClass": {
-      "replaces": "_EntityBaseClassSpec_",
+ 
+    "NET8_0_OR_GREATER": {
       "type": "parameter",
-      "datatype": "text",
-      "defaultValue": ""
+      "datatype": "bool",
+      "defaultValue": "true"
+    },
+
+    "MVVM": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
     },
 
 
+    "EXT_PROP": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
 
+ 
     "TemplateType": {
       "type": "parameter",
       "datatype": "choice",
@@ -71,7 +83,6 @@
             "CodeTemplates/EFCore/EntityType mvvm.t4": "CodeTemplates/EFCore/EntityType.t4"
           },
           "exclude": [
-            "CodeTemplates/EFCore/EntityTypeConfiguration.t4"
           ]
         },
 
@@ -81,7 +92,6 @@
             "CodeTemplates/EFCore/EntityType Org.t4": "CodeTemplates/EFCore/EntityType.t4"
           },
           "exclude": [
-            "CodeTemplates/EFCore/EntityTypeConfiguration.t4"
           ]
         }
 

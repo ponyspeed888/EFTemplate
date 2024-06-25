@@ -1,8 +1,0 @@
-{
-  "$schema": " https://json.schemastore.org/ide.host",
-  "appliesTo": "General",
-  "defaultItemExtension": "cs",
-  "icon": "MauiPageCSFile.ico",
-
-  "itemHierarchyPaths": [ "General" ]
-}

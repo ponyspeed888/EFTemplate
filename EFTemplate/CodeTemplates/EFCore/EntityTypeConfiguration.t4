@@ -30,15 +30,15 @@
             return "" ;
 
 #>
-#if NET8_0_OR_GREATER
+//#if NET8_0_OR_GREATER
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using <#= NamespaceHint #>;
 
-#if MVVM
+//#if MVVM
 using CommunityToolkit.Mvvm.ComponentModel;
-#endif
+//#endif
 
 
 
@@ -55,14 +55,14 @@ public partial class <#= EntityType.Name #>Configuration : IEntityTypeConfigurat
     public void Configure(EntityTypeBuilder<<#= EntityType.Name #>> builder)
     {
 
-#if EXT_PROP
+//#if EXT_PROP
         builder.OwnsOne(x => x.ExtProp, cb =>
         {
             
             cb.ToJson();
             
         });
-#endif
+//#endif
         MoreBuilderCalls (builder) ;
 
 
@@ -70,27 +70,27 @@ public partial class <#= EntityType.Name #>Configuration : IEntityTypeConfigurat
 }
 
 
-#if EXT_PROP
+//#if EXT_PROP
 
 public partial class <#= EntityType.Name #>
 {
 
 
-#if MVVM
+//#if MVVM
     [ObservableProperty]
     private ObservableDictionary<string, object>? _ExtPropDynamic = new ObservableDictionary<string, object>();
-#else
+//#else
     public ObservableDictionary<string, object>? ExtPropDynamic { get; set; } = new ObservableDictionary<string, object>();
-#endif
+//#endif
 
 
 
-#if MVVM
+//#if MVVM
     [ObservableProperty]
     private <#= EntityType.Name #>ExtProp? _ExtProp;
-#else
+//#else
     public <#= EntityType.Name #>ExtProp? ExtProp { get; set; }
-#endif
+//#endif
 
  
     public string? ExtPropAsString { get { if (ExtProp != null) return System.Text.Json.JsonSerializer.Serialize (ExtProp)  ;  else return null; }  }
@@ -105,6 +105,6 @@ public partial class <#= EntityType.Name #>ExtProp
 
 }
 
-#endif
+//#endif
 
-#endif
+//#endif

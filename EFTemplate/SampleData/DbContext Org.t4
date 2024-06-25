@@ -1,4 +1,4 @@
-<#@ template hostSpecific="true" debug="true" #>
+<#@ template hostSpecific="true" #>
 <#@ assembly name="Microsoft.EntityFrameworkCore" #>
 <#@ assembly name="Microsoft.EntityFrameworkCore.Design" #>
 <#@ assembly name="Microsoft.EntityFrameworkCore.Relational" #>
@@ -14,22 +14,11 @@
 <#@ import namespace="Microsoft.EntityFrameworkCore.Infrastructure" #>
 <#@ import namespace="Microsoft.EntityFrameworkCore.Scaffolding" #>
 <#@ import namespace="Microsoft.Extensions.DependencyInjection" #>
-
-<#
-
-    string StaticExtPropName = "ExtProp" ; // Json column using ef core 8 feature
-    string DynamicExtPropName = "ExtPropBag" ; // Custom Json data using ToJson, works for earlier version of ef core
-
-        //System.Diagnostics.Debugger.Launch(); 
-#>
-
 <#
     if (!ProductInfo.GetVersion().StartsWith("8.0"))
     {
         Warning("Your templates were created using an older version of Entity Framework. Additional features and bug fixes may be available. See https://aka.ms/efcore-docs-updating-templates for more information.");
     }
-
-
 
     var services = (IServiceProvider)Host;
     var providerCode = services.GetRequiredService<IProviderConfigurationCodeGenerator>();
@@ -193,14 +182,6 @@ public partial class <#= Options.ContextName #> : DbContext
         var firstProperty = true;
         foreach (var property in entityType.GetProperties())
         {
-            if ( property.Name  == StaticExtPropName) 
-                continue ;
-            if ( property.Name  == DynamicExtPropName) 
-                continue ;
-            //foreach ( var config in UseConfigure )
-            //    if ( property.Name  == config) 
-            //        continue ;
-
             var propertyFluentApiCalls = property.GetFluentApiCalls(annotationCodeGenerator)
                 ?.FilterChain(c => !(Options.UseDataAnnotations && c.IsHandledByDataAnnotations)
                     && !(c.Method == "IsRequired" && Options.UseNullableReferenceTypes && !property.ClrType.IsValueType));

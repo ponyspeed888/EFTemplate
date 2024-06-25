@@ -7,6 +7,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="CodeTemplatesx\**" />
+    <EmbeddedResource Remove="CodeTemplatesx\**" />
+    <None Remove="CodeTemplatesx\**" />
+  </ItemGroup>
+
 
 
 	<ItemGroup>
