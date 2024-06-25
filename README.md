@@ -1,5 +1,4 @@
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fponyspeed888%2FMVC8ProjectTemplate&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
-
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fponyspeed888%2FEFTemplate&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 This project is a drop in replacement of Microsoft.EntityFrameworkCore.Templates
 It has the following changes :
 
@@ -8,6 +7,17 @@ It has the following changes :
 * MVVM toolkit support
 * Generate dynamic properties per entity, using EF Core 8 Json column or dictionary (To be added)
 * 
+
+When you install this template with 
+
+   dotnet new ponyspeed888-eftemplates
+
+It will be mostly the same as Microsoft.EntityFrameworkCore.Templates
+
+To Generate mvvm tool style property use
+
+   dotnet new ponyspeed888-eftemplates --TemplateType mvvm --force
+
 
 
 
