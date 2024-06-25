@@ -4,10 +4,12 @@
 <#@ assembly name="Microsoft.EntityFrameworkCore.Relational" #>
 <#@ assembly name="Microsoft.Extensions.DependencyInjection.Abstractions" #>
 
-
+<#//paramStart#>
 <#@ parameter name="Model" type="Microsoft.EntityFrameworkCore.Metadata.IModel" #>
 <#@ parameter name="Options" type="Microsoft.EntityFrameworkCore.Scaffolding.ModelCodeGenerationOptions" #>
 <#@ parameter name="NamespaceHint" type="System.String" #>
+<#//paramEnd#>
+
 
 
 <#@ import namespace="System.Collections.Generic" #>
@@ -377,6 +379,8 @@ using <#= ns #>;
     GenerationEnvironment.Append(mainEnvironment);
 #>
 
+
+
 <#+
 
 Microsoft.EntityFrameworkCore.Metadata.IModel Model ;
@@ -386,3 +390,5 @@ System.String NamespaceHint ;
 
 
 #>
+
+

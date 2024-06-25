@@ -1,4 +1,4 @@
-﻿using TemplateTestConsoleApp.ModelsNorthWind;
+﻿//using TemplateTestConsoleApp.ModelsNorthWind;
 
 namespace TemplateTestConsoleApp
 {
@@ -6,9 +6,11 @@ namespace TemplateTestConsoleApp
     {
         static void Main(string[] args)
         {
-            NorthwindContext context = new NorthwindContext();
-            var y = context.Customers.Take(3).ToList () ;
-            Console.WriteLine($"First few customers {y.Count }");
+            //NorthwindContext context = new NorthwindContext();
+            //var y = context.Customers.Take(3).ToList () ;
+            //Console.WriteLine($"First few customers {y.Count }");
+
+
             Console.WriteLine("Hello, World!");
         }
     }
