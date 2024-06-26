@@ -159,7 +159,7 @@ namespace <#= NamespaceHint #>;
 //#if NET8_0_OR_GREATER
 [EntityTypeConfiguration(typeof(<#= EntityType.Name #>Configuration))]
 //#endif
-<#}#>
+<#  }#>
 
 public partial class <#= EntityType.Name #>
 //#if MVVM

@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "ponyspeed888",
-  "classifications": [ "General"],
+  "classifications": [ "General" ],
   "identity": "ponyspeed888.EFCoreTemplates",
   "groupIdentity": "Microsoft.EntityFrameworkCore.Templates.ef-templates",
   "name": "ponyspeed888 Entity Framework Core Scaffolding Templates",
@@ -17,7 +17,7 @@
   "preferNameDirectory": true,
 
   "symbols": {
- 
+
     "NET8_0_OR_GREATER": {
       "type": "parameter",
       "datatype": "bool",
@@ -37,7 +37,7 @@
       "defaultValue": "false"
     },
 
- 
+
     "TemplateType": {
       "type": "parameter",
       "datatype": "choice",
@@ -97,6 +97,26 @@
 
       ]
     }
+  ],
+
+
+
+
+  "primaryOutputs": [
+    { "path": "install.txt" }
+  ],
+
+  "postActions": [
+    {
+      "description": "Opens install.txt in the editor",
+      "manualInstructions": [],
+      "actionId": "84C0DA21-51C8-4541-9940-6CA19AF04EE6",
+      "args": {
+        "files": "0"
+      },
+      "continueOnError": true
+    }
   ]
+
 }
 

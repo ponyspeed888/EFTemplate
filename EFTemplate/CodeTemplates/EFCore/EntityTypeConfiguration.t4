@@ -3,13 +3,9 @@
 <#@ assembly name="Microsoft.EntityFrameworkCore.Design" #>
 <#@ assembly name="Microsoft.EntityFrameworkCore.Relational" #>
 <#@ assembly name="Microsoft.Extensions.DependencyInjection.Abstractions" #>
-
-
 <#@ parameter name="EntityType" type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" #>
 <#@ parameter name="Options" type="Microsoft.EntityFrameworkCore.Scaffolding.ModelCodeGenerationOptions" #>
 <#@ parameter name="NamespaceHint" type="System.String" #>
-
-
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.ComponentModel.DataAnnotations" #>
 <#@ import namespace="System.Linq" #>
@@ -113,14 +109,3 @@ public partial class <#= EntityType.Name #>ExtProp
 
 //#endif
 
-
-
-<#+
-
-Microsoft.EntityFrameworkCore.Metadata.IEntityType EntityType ;
-Microsoft.EntityFrameworkCore.Scaffolding.ModelCodeGenerationOptions Options ;
-System.String NamespaceHint ;
-
-
-
-#>

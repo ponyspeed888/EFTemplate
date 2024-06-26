@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace TemplateTestConsoleApp.CodeTemplates.EFCore
+namespace EFTemplate.CodeTemplates.EFCore
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -22,7 +22,7 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
+    #line 1 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class EntityTypeConfiguration : EntityTypeConfigurationBase
     {
@@ -32,9 +32,8 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\n\r\n\r\n");
             
-            #line 16 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
+            #line 16 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
 
 
     string StaticExtPropName = "ExtProp" ;
@@ -55,24 +54,25 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             
             #line default
             #line hidden
-            this.Write("\r\nusing Microsoft.EntityFrameworkCore;\r\nusing Microsoft.EntityFrameworkCore.Metad" +
-                    "ata.Builders;\r\nusing ");
+            this.Write("//#if NET8_0_OR_GREATER\r\n\r\nusing Microsoft.EntityFrameworkCore;\r\nusing Microsoft." +
+                    "EntityFrameworkCore.Metadata.Builders;\r\nusing ");
             
-            #line 36 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
+            #line 37 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(NamespaceHint));
             
             #line default
             #line hidden
-            this.Write(";\r\n\r\n\r\n\r\n\r\nnamespace ");
+            this.Write(";\r\n\r\n//#if MVVM\r\nusing CommunityToolkit.Mvvm.ComponentModel;\r\n//#endif\r\n\r\n\r\n\r\nnam" +
+                    "espace ");
             
-            #line 41 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
+            #line 45 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(NamespaceHint));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 42 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
+            #line 46 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
 
     //System.Diagnostics.Debugger.Launch();
 
@@ -81,34 +81,98 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("\r\npublic partial class ");
             
-            #line 46 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
+            #line 50 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(EntityType.Name));
             
             #line default
             #line hidden
             this.Write("Configuration : IEntityTypeConfiguration<");
             
-            #line 46 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
+            #line 50 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(EntityType.Name));
             
             #line default
             #line hidden
             this.Write(">\r\n{\r\n    partial void MoreBuilderCalls (EntityTypeBuilder<");
             
-            #line 48 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
+            #line 52 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(EntityType.Name));
             
             #line default
             #line hidden
             this.Write("> builder);\r\n\r\n\r\n    public void Configure(EntityTypeBuilder<");
             
-            #line 51 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
+            #line 55 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(EntityType.Name));
             
             #line default
             #line hidden
-            this.Write("> builder)\r\n    {\r\n\r\n        MoreBuilderCalls (builder) ;\r\n\r\n\r\n    }\r\n}\r\n\r\n\r\n\r\n\r\n" +
-                    "");
+            this.Write(@"> builder)
+    {
+
+//#if EXT_PROP
+        builder.OwnsOne(x => x.ExtProp, cb =>
+        {
+            
+            cb.ToJson();
+            
+        });
+//#endif
+        MoreBuilderCalls (builder) ;
+
+
+    }
+}
+
+
+//#if EXT_PROP
+
+public partial class ");
+            
+            #line 75 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
+            this.Write(this.ToStringHelper.ToStringWithCulture(EntityType.Name));
+            
+            #line default
+            #line hidden
+            this.Write(@"
+{
+
+
+//#if MVVM
+    [ObservableProperty]
+    private ObservableDictionary<string, object>? _ExtPropDynamic = new ObservableDictionary<string, object>();
+//#else
+    public ObservableDictionary<string, object>? ExtPropDynamic { get; set; } = new ObservableDictionary<string, object>();
+//#endif
+
+
+
+//#if MVVM
+    [ObservableProperty]
+    private ");
+            
+            #line 90 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
+            this.Write(this.ToStringHelper.ToStringWithCulture(EntityType.Name));
+            
+            #line default
+            #line hidden
+            this.Write("ExtProp? _ExtProp;\r\n//#else\r\n    public ");
+            
+            #line 92 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
+            this.Write(this.ToStringHelper.ToStringWithCulture(EntityType.Name));
+            
+            #line default
+            #line hidden
+            this.Write("ExtProp? ExtProp { get; set; }\r\n//#endif\r\n\r\n \r\n    public string? ExtPropAsString" +
+                    " { get { if (ExtProp != null) return System.Text.Json.JsonSerializer.Serialize (" +
+                    "ExtProp)  ;  else return null; }  }\r\n\r\n}\r\n\r\n\r\n\r\n\r\npublic partial class ");
+            
+            #line 103 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
+            this.Write(this.ToStringHelper.ToStringWithCulture(EntityType.Name));
+            
+            #line default
+            #line hidden
+            this.Write("ExtProp\r\n{\r\n\r\n}\r\n\r\n//#endif\r\n\r\n//#endif\r\n\r\n");
             return this.GenerationEnvironment.ToString();
         }
         private global::Microsoft.VisualStudio.TextTemplating.ITextTemplatingEngineHost hostValue;
@@ -127,14 +191,159 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             }
         }
         
-        #line 63 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
+        #line 1 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\EntityTypeConfiguration.t4"
+
+private global::Microsoft.EntityFrameworkCore.Metadata.IEntityType _EntityTypeField;
+
+/// <summary>
+/// Access the EntityType parameter of the template.
+/// </summary>
+private global::Microsoft.EntityFrameworkCore.Metadata.IEntityType EntityType
+{
+    get
+    {
+        return this._EntityTypeField;
+    }
+}
+
+private global::Microsoft.EntityFrameworkCore.Scaffolding.ModelCodeGenerationOptions _OptionsField;
+
+/// <summary>
+/// Access the Options parameter of the template.
+/// </summary>
+private global::Microsoft.EntityFrameworkCore.Scaffolding.ModelCodeGenerationOptions Options
+{
+    get
+    {
+        return this._OptionsField;
+    }
+}
+
+private string _NamespaceHintField;
+
+/// <summary>
+/// Access the NamespaceHint parameter of the template.
+/// </summary>
+private string NamespaceHint
+{
+    get
+    {
+        return this._NamespaceHintField;
+    }
+}
 
 
-Microsoft.EntityFrameworkCore.Metadata.IEntityType EntityType ;
-Microsoft.EntityFrameworkCore.Scaffolding.ModelCodeGenerationOptions Options ;
-System.String NamespaceHint ;
+/// <summary>
+/// Initialize the template
+/// </summary>
+public virtual void Initialize()
+{
+    if ((this.Errors.HasErrors == false))
+    {
+bool EntityTypeValueAcquired = false;
+if (this.Session.ContainsKey("EntityType"))
+{
+    this._EntityTypeField = ((global::Microsoft.EntityFrameworkCore.Metadata.IEntityType)(this.Session["EntityType"]));
+    EntityTypeValueAcquired = true;
+}
+if ((EntityTypeValueAcquired == false))
+{
+    string parameterValue = this.Host.ResolveParameterValue("Property", "PropertyDirectiveProcessor", "EntityType");
+    if ((string.IsNullOrEmpty(parameterValue) == false))
+    {
+        global::System.ComponentModel.TypeConverter tc = global::System.ComponentModel.TypeDescriptor.GetConverter(typeof(global::Microsoft.EntityFrameworkCore.Metadata.IEntityType));
+        if (((tc != null) 
+                    && tc.CanConvertFrom(typeof(string))))
+        {
+            this._EntityTypeField = ((global::Microsoft.EntityFrameworkCore.Metadata.IEntityType)(tc.ConvertFrom(parameterValue)));
+            EntityTypeValueAcquired = true;
+        }
+        else
+        {
+            this.Error("The type \'Microsoft.EntityFrameworkCore.Metadata.IEntityType\' of the parameter \'E" +
+                    "ntityType\' did not match the type of the data passed to the template.");
+        }
+    }
+}
+if ((EntityTypeValueAcquired == false))
+{
+    object data = global::System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("EntityType");
+    if ((data != null))
+    {
+        this._EntityTypeField = ((global::Microsoft.EntityFrameworkCore.Metadata.IEntityType)(data));
+    }
+}
+bool OptionsValueAcquired = false;
+if (this.Session.ContainsKey("Options"))
+{
+    this._OptionsField = ((global::Microsoft.EntityFrameworkCore.Scaffolding.ModelCodeGenerationOptions)(this.Session["Options"]));
+    OptionsValueAcquired = true;
+}
+if ((OptionsValueAcquired == false))
+{
+    string parameterValue = this.Host.ResolveParameterValue("Property", "PropertyDirectiveProcessor", "Options");
+    if ((string.IsNullOrEmpty(parameterValue) == false))
+    {
+        global::System.ComponentModel.TypeConverter tc = global::System.ComponentModel.TypeDescriptor.GetConverter(typeof(global::Microsoft.EntityFrameworkCore.Scaffolding.ModelCodeGenerationOptions));
+        if (((tc != null) 
+                    && tc.CanConvertFrom(typeof(string))))
+        {
+            this._OptionsField = ((global::Microsoft.EntityFrameworkCore.Scaffolding.ModelCodeGenerationOptions)(tc.ConvertFrom(parameterValue)));
+            OptionsValueAcquired = true;
+        }
+        else
+        {
+            this.Error("The type \'Microsoft.EntityFrameworkCore.Scaffolding.ModelCodeGenerationOptions\' o" +
+                    "f the parameter \'Options\' did not match the type of the data passed to the templ" +
+                    "ate.");
+        }
+    }
+}
+if ((OptionsValueAcquired == false))
+{
+    object data = global::System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Options");
+    if ((data != null))
+    {
+        this._OptionsField = ((global::Microsoft.EntityFrameworkCore.Scaffolding.ModelCodeGenerationOptions)(data));
+    }
+}
+bool NamespaceHintValueAcquired = false;
+if (this.Session.ContainsKey("NamespaceHint"))
+{
+    this._NamespaceHintField = ((string)(this.Session["NamespaceHint"]));
+    NamespaceHintValueAcquired = true;
+}
+if ((NamespaceHintValueAcquired == false))
+{
+    string parameterValue = this.Host.ResolveParameterValue("Property", "PropertyDirectiveProcessor", "NamespaceHint");
+    if ((string.IsNullOrEmpty(parameterValue) == false))
+    {
+        global::System.ComponentModel.TypeConverter tc = global::System.ComponentModel.TypeDescriptor.GetConverter(typeof(string));
+        if (((tc != null) 
+                    && tc.CanConvertFrom(typeof(string))))
+        {
+            this._NamespaceHintField = ((string)(tc.ConvertFrom(parameterValue)));
+            NamespaceHintValueAcquired = true;
+        }
+        else
+        {
+            this.Error("The type \'System.String\' of the parameter \'NamespaceHint\' did not match the type " +
+                    "of the data passed to the template.");
+        }
+    }
+}
+if ((NamespaceHintValueAcquired == false))
+{
+    object data = global::System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint");
+    if ((data != null))
+    {
+        this._NamespaceHintField = ((string)(data));
+    }
+}
 
 
+    }
+}
 
 
         

@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace TemplateTestConsoleApp.CodeTemplates.EFCore
+namespace EFTemplate.CodeTemplates.EFCore
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -23,7 +23,7 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+    #line 1 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class DbContext : DbContextBase
     {
@@ -35,21 +35,7 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
         {
             this.Write("\r\n");
             
-            #line 7 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
-//paramStart
-            
-            #line default
-            #line hidden
-            
-            #line 11 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
-//paramEnd
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\r\n\r\n");
-            this.Write("\r\n");
-            
-            #line 24 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 18 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
 
     string StaticExtPropName = "ExtProp" ; // Json column using ef core 8 feature
@@ -62,7 +48,7 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("\r\n");
             
-            #line 32 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 26 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
     if (!ProductInfo.GetVersion().StartsWith("8.0"))
     {
@@ -97,14 +83,14 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("namespace ");
             
-            #line 61 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 55 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(NamespaceHint));
             
             #line default
             #line hidden
             this.Write(";\r\n\r\n");
             
-            #line 63 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 57 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
     }
 
@@ -113,14 +99,14 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("public partial class ");
             
-            #line 66 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 60 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(Options.ContextName));
             
             #line default
             #line hidden
             this.Write(" : DbContext\r\n{\r\n");
             
-            #line 68 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 62 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
     if (!Options.SuppressOnConfiguring)
     {
@@ -130,14 +116,14 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("    public ");
             
-            #line 72 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 66 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(Options.ContextName));
             
             #line default
             #line hidden
             this.Write("()\r\n    {\r\n    }\r\n\r\n");
             
-            #line 76 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 70 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
     }
 
@@ -146,21 +132,21 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("    public ");
             
-            #line 79 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 73 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(Options.ContextName));
             
             #line default
             #line hidden
             this.Write("(DbContextOptions<");
             
-            #line 79 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 73 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(Options.ContextName));
             
             #line default
             #line hidden
             this.Write("> options)\r\n        : base(options)\r\n    {\r\n    }\r\n\r\n");
             
-            #line 84 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 78 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
     foreach (var entityType in Model.GetEntityTypes().Where(e => !e.IsSimpleManyToManyJoinEntityType()))
     {
@@ -170,21 +156,21 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("    public virtual DbSet<");
             
-            #line 88 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 82 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(entityType.Name));
             
             #line default
             #line hidden
             this.Write("> ");
             
-            #line 88 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 82 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(entityType.GetDbSetName()));
             
             #line default
             #line hidden
             this.Write(" { get; set; }\r\n\r\n");
             
-            #line 90 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 84 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
     }
 
@@ -197,7 +183,7 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             this.Write("    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)" +
                     "\r\n");
             
-            #line 97 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 91 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
     if (!Options.SuppressConnectionStringWarning)
     {
@@ -208,7 +194,7 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             this.Write(@"#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
 ");
             
-            #line 102 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 96 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
     }
 
@@ -220,14 +206,14 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("        => optionsBuilder");
             
-            #line 108 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 102 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Fragment(useProviderCall, indent: 3)));
             
             #line default
             #line hidden
             this.Write(";\r\n\r\n");
             
-            #line 110 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 104 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
     }
 
@@ -237,7 +223,7 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("    protected override void OnModelCreating(ModelBuilder modelBuilder)\r\n    {\r\n");
             
-            #line 116 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 110 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
     var anyConfiguration = false;
 
@@ -251,14 +237,14 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("        modelBuilder");
             
-            #line 124 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 118 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Fragment(modelFluentApiCalls, indent: 3)));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 125 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 119 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
         anyConfiguration = true;
     }
@@ -282,14 +268,14 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("        modelBuilder.Entity<");
             
-            #line 143 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 137 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(entityType.Name));
             
             #line default
             #line hidden
             this.Write(">(entity =>\r\n        {\r\n");
             
-            #line 145 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 139 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
         var key = entityType.FindPrimaryKey();
         if (key != null)
@@ -308,21 +294,21 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("            entity.HasKey(");
             
-            #line 158 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 152 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Lambda(key.Properties, "e")));
             
             #line default
             #line hidden
             this.Write(")");
             
-            #line 158 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 152 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Fragment(keyFluentApiCalls, indent: 4)));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 159 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 153 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
                 anyEntityTypeConfiguration = true;
             }
@@ -344,14 +330,14 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("            entity");
             
-            #line 175 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 169 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Fragment(entityTypeFluentApiCalls, indent: 4)));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 176 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 170 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
             anyEntityTypeConfiguration = true;
         }
@@ -375,28 +361,28 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("            entity.HasIndex(");
             
-            #line 194 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 188 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Lambda(index.Properties, "e")));
             
             #line default
             #line hidden
             this.Write(", ");
             
-            #line 194 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 188 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Literal(index.GetDatabaseName())));
             
             #line default
             #line hidden
             this.Write(")");
             
-            #line 194 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 188 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Fragment(indexFluentApiCalls, indent: 4)));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 195 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 189 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
             anyEntityTypeConfiguration = true;
         }
@@ -432,21 +418,21 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("            entity.Property(e => e.");
             
-            #line 225 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 219 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
             
             #line default
             #line hidden
             this.Write(")");
             
-            #line 225 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 219 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Fragment(propertyFluentApiCalls, indent: 4)));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 226 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 220 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
             anyEntityTypeConfiguration = true;
             firstProperty = false;
@@ -473,35 +459,35 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("            entity.HasOne(d => d.");
             
-            #line 247 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 241 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(foreignKey.DependentToPrincipal.Name));
             
             #line default
             #line hidden
             this.Write(").");
             
-            #line 247 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 241 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(foreignKey.IsUnique ? "WithOne" : "WithMany"));
             
             #line default
             #line hidden
             this.Write("(");
             
-            #line 247 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 241 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(foreignKey.PrincipalToDependent != null ? $"p => p.{foreignKey.PrincipalToDependent.Name}" : ""));
             
             #line default
             #line hidden
             this.Write(")");
             
-            #line 247 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 241 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Fragment(foreignKeyFluentApiCalls, indent: 4)));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 248 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 242 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
             anyEntityTypeConfiguration = true;
         }
@@ -534,14 +520,14 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("            entity.HasMany(d => d.");
             
-            #line 275 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 269 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(skipNavigation.Name));
             
             #line default
             #line hidden
             this.Write(").WithMany(p => p.");
             
-            #line 275 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 269 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(skipNavigation.Inverse.Name));
             
             #line default
@@ -549,42 +535,42 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             this.Write(")\r\n                .UsingEntity<Dictionary<string, object>>(\r\n                   " +
                     " ");
             
-            #line 277 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 271 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Literal(joinEntityType.Name)));
             
             #line default
             #line hidden
             this.Write(",\r\n                    r => r.HasOne<");
             
-            #line 278 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 272 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(right.PrincipalEntityType.Name));
             
             #line default
             #line hidden
             this.Write(">().WithMany()");
             
-            #line 278 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 272 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Fragment(rightFluentApiCalls, indent: 6)));
             
             #line default
             #line hidden
             this.Write(",\r\n                    l => l.HasOne<");
             
-            #line 279 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 273 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(left.PrincipalEntityType.Name));
             
             #line default
             #line hidden
             this.Write(">().WithMany()");
             
-            #line 279 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 273 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Fragment(leftFluentApiCalls, indent: 6)));
             
             #line default
             #line hidden
             this.Write(",\r\n                    j =>\r\n                    {\r\n");
             
-            #line 282 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 276 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
             var joinKey = joinEntityType.FindPrimaryKey();
             var joinKeyFluentApiCalls = joinKey.GetFluentApiCalls(annotationCodeGenerator);
@@ -599,21 +585,21 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("                        j.HasKey(");
             
-            #line 291 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 285 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Arguments(joinKey.Properties.Select(e => e.Name))));
             
             #line default
             #line hidden
             this.Write(")");
             
-            #line 291 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 285 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Fragment(joinKeyFluentApiCalls, indent: 7)));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 292 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 286 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
             var joinEntityTypeFluentApiCalls = joinEntityType.GetFluentApiCalls(annotationCodeGenerator);
             if (joinEntityTypeFluentApiCalls != null)
@@ -625,14 +611,14 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("                        j");
             
-            #line 298 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 292 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Fragment(joinEntityTypeFluentApiCalls, indent: 7)));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 299 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 293 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
             }
 
@@ -649,28 +635,28 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("                        j.HasIndex(");
             
-            #line 310 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 304 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Literal(index.Properties.Select(e => e.Name).ToArray())));
             
             #line default
             #line hidden
             this.Write(", ");
             
-            #line 310 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 304 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Literal(index.GetDatabaseName())));
             
             #line default
             #line hidden
             this.Write(")");
             
-            #line 310 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 304 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Fragment(indexFluentApiCalls, indent: 7)));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 311 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 305 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
             }
 
@@ -689,28 +675,28 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("                        j.IndexerProperty<");
             
-            #line 324 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 318 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Reference(property.ClrType)));
             
             #line default
             #line hidden
             this.Write(">(");
             
-            #line 324 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 318 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Literal(property.Name)));
             
             #line default
             #line hidden
             this.Write(")");
             
-            #line 324 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 318 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Fragment(propertyFluentApiCalls, indent: 7)));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 325 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 319 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
             }
 
@@ -719,7 +705,7 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("                    });\r\n");
             
-            #line 329 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 323 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
             anyEntityTypeConfiguration = true;
         }
@@ -729,7 +715,7 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("        });\r\n");
             
-            #line 334 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 328 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
         // If any signicant code was generated, append it to the main environment
         if (anyEntityTypeConfiguration)
@@ -753,34 +739,34 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("        modelBuilder.HasSequence");
             
-            #line 352 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 346 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(needsType ? $"<{code.Reference(sequence.Type)}>" : ""));
             
             #line default
             #line hidden
             this.Write("(");
             
-            #line 352 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 346 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Literal(sequence.Name)));
             
             #line default
             #line hidden
             
-            #line 352 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 346 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(needsSchema ? $", {code.Literal(sequence.Schema)}" : ""));
             
             #line default
             #line hidden
             this.Write(")");
             
-            #line 352 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 346 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(code.Fragment(sequenceFluentApiCalls, indent: 3)));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 353 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 347 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
     }
 
@@ -795,7 +781,7 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             this.Write("        OnModelCreatingPartial(modelBuilder);\r\n    }\r\n\r\n    partial void OnModelC" +
                     "reatingPartial(ModelBuilder modelBuilder);\r\n}\r\n");
             
-            #line 366 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 360 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
     mainEnvironment = GenerationEnvironment;
     GenerationEnvironment = new StringBuilder();
@@ -808,14 +794,14 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             #line hidden
             this.Write("using ");
             
-            #line 373 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 367 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
             this.Write(this.ToStringHelper.ToStringWithCulture(ns));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 374 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+            #line 368 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
     }
 
@@ -826,7 +812,6 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             
             #line default
             #line hidden
-            this.Write("\r\n\r\n\r\n");
             return this.GenerationEnvironment.ToString();
         }
         private global::Microsoft.VisualStudio.TextTemplating.ITextTemplatingEngineHost hostValue;
@@ -845,21 +830,7 @@ namespace TemplateTestConsoleApp.CodeTemplates.EFCore
             }
         }
         
-        #line 384 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
-
-
-Microsoft.EntityFrameworkCore.Metadata.IModel Model ;
-Microsoft.EntityFrameworkCore.Scaffolding.ModelCodeGenerationOptions Options ;
-System.String NamespaceHint ;
-
-
-
-
-        
-        #line default
-        #line hidden
-        
-        #line 1 "U:\EFTemplate\TemplateTestConsoleApp\CodeTemplates\EFCore\DbContext.t4"
+        #line 1 "U:\EFTemplate\EFTemplate\CodeTemplates\EFCore\DbContext.t4"
 
 private global::Microsoft.EntityFrameworkCore.Metadata.IModel _ModelField;
 

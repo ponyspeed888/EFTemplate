@@ -8,17 +8,6 @@
   </PropertyGroup>
 
  
-
-  <ItemGroup>
-    <None Include="CodeTemplates\RuntimeTextTemplate.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>RuntimeTextTemplate.tt</DependentUpon>
-    </None>
-  </ItemGroup>
-
-
-
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.5" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.5" />
@@ -31,48 +20,6 @@
 
 	</ItemGroup>
 
-
-
-	<ItemGroup>
-	  <None Update="CodeTemplates\EFCore\DbContext.t4">
-	    <Generator>TextTemplatingFilePreProcessor</Generator>
-	    <LastGenOutput>DbContext.cs</LastGenOutput>
-	  </None>
-	  <None Update="CodeTemplates\EFCore\EntityTypeConfiguration.t4">
-	    <Generator>TextTemplatingFilePreProcessor</Generator>
-	    <LastGenOutput>EntityTypeConfiguration.cs</LastGenOutput>
-	  </None>
-	  <None Update="CodeTemplates\RuntimeTextTemplate.tt">
-	    <Generator>TextTemplatingFilePreProcessor</Generator>
-	    <LastGenOutput>RuntimeTextTemplate.cs</LastGenOutput>
-	  </None>
-	</ItemGroup>
-
-
-
-	<ItemGroup>
-	  <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-	</ItemGroup>
-
-
-
-	<ItemGroup>
-	  <Compile Update="CodeTemplates\EFCore\DbContext.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>DbContext.t4</DependentUpon>
-	  </Compile>
-	  <Compile Update="CodeTemplates\EFCore\EntityTypeConfiguration.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>EntityTypeConfiguration.t4</DependentUpon>
-	  </Compile>
-	  <Compile Update="CodeTemplates\RuntimeTextTemplate.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>RuntimeTextTemplate.tt</DependentUpon>
-	  </Compile>
-	</ItemGroup>
 
 
 </Project>
